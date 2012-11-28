@@ -39,7 +39,7 @@ namespace DBClass
                 }
 
                 select = String.Format("select * from {0} where {1} = '{2}'", comboBox1.SelectedItem.ToString(),
-                                                                        parameters[0], parameters[1]);                
+                                                                        parameters[0].Trim(), parameters[1].Trim());                
             }
 
             OdbcDataAdapter da = new OdbcDataAdapter(select, conn);
@@ -123,7 +123,14 @@ namespace DBClass
             {
                 MessageBox.Show("Need select parameters in the from of attribute = value");
             }
-            PopulateTable(textBox3.Text.Split('='));
+            if (textBox3.Text.Split('=')[0] == "model")
+            {
+                MessageBox.Show("Attribute to look up can not be primary key");
+            }
+            else
+            {
+                PopulateTable(textBox3.Text.Split('='));
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -137,10 +144,13 @@ namespace DBClass
                 conn.Open();
                 MessageBox.Show("Connected!");
             }
-            catch (Exception)
+            catch (Exception exc)
             {
-                MessageBox.Show("Can not open connection. Program terminating...!");
+                MessageBox.Show("Can not open connection." + Environment.NewLine +
+                                 exc.Message + Environment.NewLine +
+                                 "Program terminating...!");
                 this.Close();
+                return;
             }
             textBox1.Enabled = true;
             textBox2.Enabled = true;

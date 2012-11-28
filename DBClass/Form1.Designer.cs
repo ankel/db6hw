@@ -88,9 +88,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(14, 29);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(169, 26);
+            this.label2.Size = new System.Drawing.Size(153, 26);
             this.label2.TabIndex = 0;
-            this.label2.Text = "Enter attribute and value, \r\nseparate by \'=\' (ie \"model = 1001\")";
+            this.label2.Text = "Enter attribute and value, \r\nseparate by \'=\' (ie \"maker = A\")";
             // 
             // groupBox2
             // 
