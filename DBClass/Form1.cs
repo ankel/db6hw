@@ -122,15 +122,20 @@ namespace DBClass
             if (textBox3.Text == "")
             {
                 MessageBox.Show("Need select parameters in the from of attribute = value");
+                return;
+            }
+            if (textBox3.Text.Split('=').Length != 2)
+            {
+                MessageBox.Show("Too many argument");
+                return;
             }
             if (textBox3.Text.Split('=')[0] == "model")
             {
                 MessageBox.Show("Attribute to look up can not be primary key");
+                return;
             }
-            else
-            {
-                PopulateTable(textBox3.Text.Split('='));
-            }
+            
+            PopulateTable(textBox3.Text.Split('='));
         }
 
         private void button3_Click(object sender, EventArgs e)
